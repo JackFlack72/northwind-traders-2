@@ -1,4 +1,3 @@
-
 package com.northwind.data;
 
 import com.northwind.model.Customer;
@@ -21,8 +20,6 @@ public class CustomerDao {
     public List<Customer> getAll() {
         List<Customer> customers = new ArrayList<>();
 
-        //call the database and get back customers
-        //create Customer objects and fill them with the data from the database ResultSet
         String query = """
                 SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax
                 FROM Customers;

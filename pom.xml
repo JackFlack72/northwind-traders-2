@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.northwind</groupId>
-    <artifactId>NorthwindTraders_2</artifactId>
+    <artifactId>NorthwindTraders</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
