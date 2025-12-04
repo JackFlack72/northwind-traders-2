@@ -22,6 +22,7 @@ public class Program {
         dataSource.setUsername(username);
         dataSource.setPassword(password);
 
+
         System.out.println("========================================");
         System.out.println("TESTING CUSTOMER DAO");
         System.out.println("========================================\n");
@@ -96,6 +97,7 @@ public class Program {
         } else {
             System.out.println("Warning: Customer TSTID still exists after deletion.");
         }
+
 
         System.out.println("\n========================================");
         System.out.println("TESTING SHIPPER DAO");
@@ -190,52 +192,52 @@ public class Program {
         // Test 3: Add a new product
         System.out.println("\n--- Test 3: Add New Product ---");
         Product newProduct = new Product(
-                1,
+                78,
                 "Test Product",
-                "John Doe",
-                "Manager",
-                "123 Test St",
-                "Test City",
-                "TC",
-                "12345",
-                "USA",
-                "555-1234"
+                1,
+                1,
+                "12 boxes",
+                10.00,
+                10,
+                5,
+                2,
+                false
         );
         Product addedProduct = productDao.add(newProduct);
         System.out.println("Added: " + addedProduct);
 
         // Test 4: Verify the product was added
-        System.out.println("\n--- Test 4: Verify Customer Was Added ---");
-        Customer verifyCustomer = customerDao.find("TSTID");
-        if (verifyCustomer != null) {
-            System.out.println("Verified: " + verifyCustomer);
+        System.out.println("\n--- Test 4: Verify Product Was Added ---");
+        Product verifyProduct = productDao.find(78);
+        if (verifyProduct != null) {
+            System.out.println("Verified: " + verifyProduct);
         } else {
-            System.out.println("Customer TSTID not found after adding.");
+            System.out.println("Product 78 not found after adding.");
         }
 
-        // Test 5: Update the customer
-        System.out.println("\n--- Test 5: Update Customer ---");
-        if (verifyCustomer != null) {
-            verifyCustomer.setCompanyName("Updated Test Company");
-            verifyCustomer.setContactName("Jane Smith");
-            verifyCustomer.setPhone("555-9999");
-            customerDao.update(verifyCustomer);
-            System.out.println("Updated customer TSTID");
+        // Test 5: Update the product
+        System.out.println("\n--- Test 5: Update Product ---");
+        if (verifyProduct != null) {
+            verifyProduct.setProductName("Updated Test Product");
+            verifyProduct.setUnitPrice(12.00);
+            verifyProduct.setQuantityPerUnit("30 boxes");
+            productDao.update(verifyProduct);
+            System.out.println("Updated product 78");
 
-            Customer updatedCustomer = customerDao.find("TSTID");
-            System.out.println("After update: " + updatedCustomer);
+            Product updatedProduct = productDao.find(78);
+            System.out.println("After update: " + updatedProduct);
         }
 
-        // Test 6: Delete the customer
-        System.out.println("\n--- Test 6: Delete Customer ---");
-        customerDao.delete("TSTID");
-        System.out.println("Deleted customer TSTID");
+        // Test 6: Delete the product
+        System.out.println("\n--- Test 6: Delete Product ---");
+        productDao.delete(78);
+        System.out.println("Deleted product 78");
 
-        Customer deletedCustomer = customerDao.find("TSTID");
-        if (deletedCustomer == null) {
-            System.out.println("Confirmed: Customer TSTID no longer exists.");
+        Product deletedProduct = productDao.find(78);
+        if (deletedProduct == null) {
+            System.out.println("Confirmed: Product 78 no longer exists.");
         } else {
-            System.out.println("Warning: Customer TSTID still exists after deletion.");
+            System.out.println("Warning: Product 78 still exists after deletion.");
         }
 
         System.out.println("\n========================================");
