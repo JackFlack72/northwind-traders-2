@@ -32,14 +32,14 @@ public class ProductDao {
                     Product product = new Product(
                             resultSet.getInt("ProductID"),
                             resultSet.getString("ProductName"),
-                            resultSet.getString("SupplierID"),
-                            resultSet.getString("CategoryID"),
+                            resultSet.getInt("SupplierID"),
+                            resultSet.getInt("CategoryID"),
                             resultSet.getString("QuantityPerUnit"),
-                            resultSet.getString("UnitPrice"),
-                            resultSet.getString("UnitsInStock"),
-                            resultSet.getString("UnitsOnOrder"),
-                            resultSet.getString("ReorderLevel"),
-                            resultSet.getString("Discontinued"));
+                            resultSet.getDouble("UnitPrice"),
+                            resultSet.getInt("UnitsInStock"),
+                            resultSet.getInt("UnitsOnOrder"),
+                            resultSet.getInt("ReorderLevel"),
+                            resultSet.getBoolean("Discontinued"));
 
                     products.add(product);
                 }
@@ -73,14 +73,14 @@ public class ProductDao {
                     product = new Product(
                             resultSet.getInt("ProductID"),
                             resultSet.getString("ProductName"),
-                            resultSet.getString("UnitPrice"),
-                            resultSet.getString("CategoryID"),
+                            resultSet.getInt("SupplierID"),
+                            resultSet.getInt("CategoryID"),
                             resultSet.getString("QuantityPerUnit"),
-                            resultSet.getString("UnitPrice"),
-                            resultSet.getString("UnitsInStock"),
-                            resultSet.getString("UnitsOnOrder"),
-                            resultSet.getString("ReorderLevel"),
-                            resultSet.getString("Discontinued"));
+                            resultSet.getDouble("UnitPrice"),
+                            resultSet.getInt("UnitsInStock"),
+                            resultSet.getInt("UnitsOnOrder"),
+                            resultSet.getInt("ReorderLevel"),
+                            resultSet.getBoolean("Discontinued"));
                 }
 
             }
@@ -102,14 +102,14 @@ public class ProductDao {
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, product.getProductName());
-            statement.setString(2, product.getUnitPrice());
-            statement.setString(3, product.getCategoryId());
+            statement.setDouble(2, product.getSupplierId());
+            statement.setInt(3, product.getCategoryId());
             statement.setString(4, product.getQuantityPerUnit());
-            statement.setString(5, product.getUnitPrice());
-            statement.setString(6, product.getUnitsInStock());
-            statement.setString(7, product.getUnitsOnOrder());
-            statement.setString(8, product.getReorderLevel());
-            statement.setString(9, product.getDiscontinued());
+            statement.setDouble(5, product.getUnitPrice());
+            statement.setInt(6, product.getUnitsInStock());
+            statement.setInt(7, product.getUnitsOnOrder());
+            statement.setInt(8, product.getReorderLevel());
+            statement.setBoolean(9, product.isDiscontinued());
 
             statement.executeUpdate();
 
@@ -132,21 +132,21 @@ public class ProductDao {
         String query = """
                 UPDATE Products
                 SET ProductName = ?, SupplierID = ?, CategoryID = ?, QuantityPerUnit = ?, UnitPrice = ?, UnitsInStock = ?, UnitsOnOrder = ?, ReorderLevel = ?, Discontinued = ?
-                WHERE ProductsID = ?;
+                WHERE ProductID = ?;
                 """;
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, product.getProductName());
-            statement.setString(2, product.getSupplierId());
-            statement.setString(3, product.getCategoryId());
+            statement.setInt(2, product.getSupplierId());
+            statement.setInt(3, product.getCategoryId());
             statement.setString(4, product.getQuantityPerUnit());
-            statement.setString(5, product.getUnitPrice());
-            statement.setString(6, product.getUnitsInStock());
-            statement.setString(7, product.getUnitsOnOrder());
-            statement.setString(8, product.getReorderLevel());
-            statement.setString(9, product.getDiscontinued());
+            statement.setDouble(5, product.getUnitPrice());
+            statement.setInt(6, product.getUnitsInStock());
+            statement.setInt(7, product.getUnitsOnOrder());
+            statement.setInt(8, product.getReorderLevel());
+            statement.setBoolean(9, product.isDiscontinued());
             statement.setInt(10, product.getProductId());
 
             statement.executeUpdate();

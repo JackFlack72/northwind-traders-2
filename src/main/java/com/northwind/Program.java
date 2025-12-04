@@ -2,8 +2,10 @@
 package com.northwind;
 
 import com.northwind.data.CustomerDao;
+import com.northwind.data.ProductDao;
 import com.northwind.data.ShipperDao;
 import com.northwind.model.Customer;
+import com.northwind.model.Product;
 import com.northwind.model.Shipper;
 import org.apache.commons.dbcp2.BasicDataSource;
 
@@ -159,6 +161,81 @@ public class Program {
             System.out.println("Confirmed: Shipper with ID " + newShipperId + " no longer exists.");
         } else {
             System.out.println("Warning: Shipper with ID " + newShipperId + " still exists after deletion.");
+        }
+
+
+        System.out.println("========================================");
+        System.out.println("TESTING PRODUCT DAO");
+        System.out.println("========================================\n");
+
+        ProductDao productDao = new ProductDao(dataSource);
+
+        // Test 1: Get all products
+        System.out.println("--- Test 1: Get All Products ---");
+        List<Product> products = productDao.getAll();
+        System.out.println("Total products: " + products.size());
+        if (!products.isEmpty()) {
+            System.out.println("First product: " + products.get(0));
+        }
+
+        // Test 2: Find a specific product
+        System.out.println("\n--- Test 2: Find Product by ID ---");
+        Product foundProduct = productDao.find(1);
+        if (foundProduct != null) {
+            System.out.println("Found: " + foundProduct);
+        } else {
+            System.out.println("Product 1 not found.");
+        }
+
+        // Test 3: Add a new product
+        System.out.println("\n--- Test 3: Add New Product ---");
+        Product newProduct = new Product(
+                1,
+                "Test Product",
+                "John Doe",
+                "Manager",
+                "123 Test St",
+                "Test City",
+                "TC",
+                "12345",
+                "USA",
+                "555-1234"
+        );
+        Product addedProduct = productDao.add(newProduct);
+        System.out.println("Added: " + addedProduct);
+
+        // Test 4: Verify the product was added
+        System.out.println("\n--- Test 4: Verify Customer Was Added ---");
+        Customer verifyCustomer = customerDao.find("TSTID");
+        if (verifyCustomer != null) {
+            System.out.println("Verified: " + verifyCustomer);
+        } else {
+            System.out.println("Customer TSTID not found after adding.");
+        }
+
+        // Test 5: Update the customer
+        System.out.println("\n--- Test 5: Update Customer ---");
+        if (verifyCustomer != null) {
+            verifyCustomer.setCompanyName("Updated Test Company");
+            verifyCustomer.setContactName("Jane Smith");
+            verifyCustomer.setPhone("555-9999");
+            customerDao.update(verifyCustomer);
+            System.out.println("Updated customer TSTID");
+
+            Customer updatedCustomer = customerDao.find("TSTID");
+            System.out.println("After update: " + updatedCustomer);
+        }
+
+        // Test 6: Delete the customer
+        System.out.println("\n--- Test 6: Delete Customer ---");
+        customerDao.delete("TSTID");
+        System.out.println("Deleted customer TSTID");
+
+        Customer deletedCustomer = customerDao.find("TSTID");
+        if (deletedCustomer == null) {
+            System.out.println("Confirmed: Customer TSTID no longer exists.");
+        } else {
+            System.out.println("Warning: Customer TSTID still exists after deletion.");
         }
 
         System.out.println("\n========================================");

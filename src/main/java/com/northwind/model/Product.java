@@ -3,16 +3,16 @@ package com.northwind.model;
 public class Product {
     private int productId;
     private String productName;
-    private String supplierId;
-    private String categoryId;
+    private int supplierId;
+    private int categoryId;
     private String quantityPerUnit;
-    private String unitPrice;
-    private String unitsInStock;
-    private String unitsOnOrder;
-    private String reorderLevel;
-    private String discontinued;
+    private Double unitPrice;
+    private int unitsInStock;
+    private int unitsOnOrder;
+    private int reorderLevel;
+    private boolean discontinued;
 
-    public Product(int productId, String productName, String supplierId, String categoryId, String quantityPerUnit, String unitPrice, String unitsInStock, String unitsOnOrder, String reorderLevel, String discontinued) {
+    public Product(int productId, String productName, int supplierId, int categoryId, String quantityPerUnit, Double unitPrice, int unitsInStock, int unitsOnOrder, int reorderLevel, boolean discontinued) {
         this.productId = productId;
         this.productName = productName;
         this.supplierId = supplierId;
@@ -29,79 +29,79 @@ public class Product {
         return productId;
     }
 
-    public String getProductName() {
-        return productName;
-    }
-
-    public String getSupplierId() {
-        return supplierId;
-    }
-
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    public String getQuantityPerUnit() {
-        return quantityPerUnit;
-    }
-
-    public String getUnitPrice() {
-        return unitPrice;
-    }
-
-    public String getUnitsInStock() {
-        return unitsInStock;
-    }
-
-    public String getUnitsOnOrder() {
-        return unitsOnOrder;
-    }
-
-    public String getReorderLevel() {
-        return reorderLevel;
-    }
-
-    public String getDiscontinued() {
-        return discontinued;
-    }
-
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
     }
 
     public void setProductName(String productName) {
         this.productName = productName;
     }
 
-    public void setSupplierId(String supplierId) {
+    public int getSupplierId() {
+        return supplierId;
+    }
+
+    public void setSupplierId(int supplierId) {
         this.supplierId = supplierId;
     }
 
-    public void setCategoryId(String categoryId) {
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getQuantityPerUnit() {
+        return quantityPerUnit;
     }
 
     public void setQuantityPerUnit(String quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public void setUnitsInStock(String unitsInStock) {
+    public int getUnitsInStock() {
+        return unitsInStock;
+    }
+
+    public void setUnitsInStock(int unitsInStock) {
         this.unitsInStock = unitsInStock;
     }
 
-    public void setUnitsOnOrder(String unitsOnOrder) {
+    public int getUnitsOnOrder() {
+        return unitsOnOrder;
+    }
+
+    public void setUnitsOnOrder(int unitsOnOrder) {
         this.unitsOnOrder = unitsOnOrder;
     }
 
-    public void setReorderLevel(String reorderLevel) {
+    public int getReorderLevel() {
+        return reorderLevel;
+    }
+
+    public void setReorderLevel(int reorderLevel) {
         this.reorderLevel = reorderLevel;
     }
 
-    public void setDiscontinued(String discontinued) {
+    public boolean isDiscontinued() {
+        return discontinued;
+    }
+
+    public void setDiscontinued(boolean discontinued) {
         this.discontinued = discontinued;
     }
 
