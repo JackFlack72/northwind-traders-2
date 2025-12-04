@@ -102,7 +102,7 @@ public class ProductDao {
              PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, product.getProductName());
-            statement.setDouble(2, product.getSupplierId());
+            statement.setInt(2, product.getSupplierId());
             statement.setInt(3, product.getCategoryId());
             statement.setString(4, product.getQuantityPerUnit());
             statement.setDouble(5, product.getUnitPrice());

@@ -192,7 +192,7 @@ public class Program {
         // Test 3: Add a new product
         System.out.println("\n--- Test 3: Add New Product ---");
         Product newProduct = new Product(
-                78,
+                0,
                 "Test Product",
                 1,
                 1,
@@ -208,7 +208,7 @@ public class Program {
 
         // Test 4: Verify the product was added
         System.out.println("\n--- Test 4: Verify Product Was Added ---");
-        Product verifyProduct = productDao.find(78);
+        Product verifyProduct = productDao.find(addedProduct.getProductId());
         if (verifyProduct != null) {
             System.out.println("Verified: " + verifyProduct);
         } else {
@@ -222,22 +222,22 @@ public class Program {
             verifyProduct.setUnitPrice(12.00);
             verifyProduct.setQuantityPerUnit("30 boxes");
             productDao.update(verifyProduct);
-            System.out.println("Updated product 78");
+            System.out.println("Updated product");
 
-            Product updatedProduct = productDao.find(78);
+            Product updatedProduct = productDao.find(addedProduct.getProductId());
             System.out.println("After update: " + updatedProduct);
         }
 
         // Test 6: Delete the product
         System.out.println("\n--- Test 6: Delete Product ---");
-        productDao.delete(78);
-        System.out.println("Deleted product 78");
+        productDao.delete(addedProduct.getProductId());
+        System.out.println("Deleted product");
 
-        Product deletedProduct = productDao.find(78);
+        Product deletedProduct = productDao.find(addedProduct.getProductId());
         if (deletedProduct == null) {
-            System.out.println("Confirmed: Product 78 no longer exists.");
+            System.out.println("Confirmed: Product no longer exists.");
         } else {
-            System.out.println("Warning: Product 78 still exists after deletion.");
+            System.out.println("Warning: Product still exists after deletion.");
         }
 
         System.out.println("\n========================================");
