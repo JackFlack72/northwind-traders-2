@@ -95,7 +95,7 @@ public class ProductDao {
     public Product add(Product product) {
         String query = """
                 INSERT INTO Products (ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """;
 
         try (Connection connection = dataSource.getConnection();
@@ -121,7 +121,7 @@ public class ProductDao {
             }
 
         } catch (SQLException e) {
-            System.out.println("There was an error adding the shipper. Please try again.");
+            System.out.println("There was an error adding the product. Please try again.");
             e.printStackTrace();
         }
 
@@ -152,7 +152,7 @@ public class ProductDao {
             statement.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("There was an error updating the shipper. Please try again.");
+            System.out.println("There was an error updating the product. Please try again.");
             e.printStackTrace();
         }
     }
